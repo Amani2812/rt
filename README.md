@@ -117,6 +117,8 @@ This project will deepen your understanding of:
 🎬 Computer-generated imagery (CGI)
 🧮 Computational geometry and mathematics
 ⚙️ Algorithm optimization
+
                                                                           Happy Ray Tracing! 🚀
 
-                                                                Transform mathematics into visual magic
+
+                                                                ##Transform mathematics into visual magic##
