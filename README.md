@@ -19,9 +19,13 @@ How it works: Imagine a camera pointing at a scene. Rays emanate from the camera
 💡 Want to learn more? We highly recommend researching ray tracing online—it's a fascinating but complex topic!
 
 🎯 Project Objectives
+
+
 Build a functional ray tracer capable of rendering computer-generated images with multiple objects and realistic lighting.
 
 Core Requirements
+
+
 📦 Object Support
 Implement at least 4 geometric primitives:
 
@@ -40,6 +44,8 @@ Create 4 sample images (800×600 resolution) for evaluation:
 
 
 Scene	Description
+
+
 Scene 1	A sphere
 Scene 2	A flat plane and cube with lower brightness
 Scene 3	One of each object (cube, sphere, cylinder, plane)
@@ -57,6 +63,8 @@ Must Include:
 Goal: A new user should be able to use your ray tracer without guesswork after reading the docs.
 
 🛠️ Implementation Guide
+
+
 PPM File Format
 Your ray tracer outputs .ppm (Portable PixMap) files consisting of a header and body.
 
@@ -85,9 +93,13 @@ cargo run > output.ppm
 This redirects standard output to create your image file.
 
 Geometry Resources:
+
+
 Search online for the mathematical formulas needed to represent each geometric shape in your ray tracer.
 
 🌈 Bonus Features
+
+
 Take your ray tracer to the next level with:
 
 🎨 Textures on object surfaces
@@ -97,6 +109,8 @@ Take your ray tracer to the next level with:
 💻 Pro tip: Use command-line flags for bonus features (e.g., -t for textures) to maintain reasonable performance for standard rendering.
 
 🎓 Learning Outcomes
+
+
 This project will deepen your understanding of:
 
 🔬 Ray tracing algorithms
