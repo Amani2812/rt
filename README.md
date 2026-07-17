@@ -1,4 +1,5 @@
-🌟 Ray Tracer
+
+                                                          🌟 Ray Tracer
 
 
 A journey into the world of computer-generated imagery through ray tracing
@@ -118,7 +119,7 @@ This project will deepen your understanding of:
 🧮 Computational geometry and mathematics
 ⚙️ Algorithm optimization
 
-                                                                          Happy Ray Tracing! 🚀
+                                                                    Happy Ray Tracing! 🚀
 
 
-                                                                ##Transform mathematics into visual magic##
+                                                        ##Transform mathematics into visual magic##
