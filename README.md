@@ -1,5 +1,5 @@
 
-                                                          🌟 Ray Tracer
+                                                 🌟 Ray Tracer
 
 
 A journey into the world of computer-generated imagery through ray tracing
