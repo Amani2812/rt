@@ -671,7 +671,7 @@ fn build_scene(scene_id: u32, aspect: f64, brightness_override: Option<f64>) -> 
             );
             (scene, cam, "scene3_all_objects.ppm".to_string())
         }
-        _ => {
+        4 => {
             // Scene 4: same as scene 3, different camera
             let (scene3, _cam3, _name3) = build_scene(3, aspect, brightness_override);
             let cam = Camera::look_at(
@@ -682,6 +682,74 @@ fn build_scene(scene_id: u32, aspect: f64, brightness_override: Option<f64>) -> 
                 aspect,
             );
             (scene3, cam, "scene4_all_objects_cam2.ppm".to_string())
+        }
+        _ => {
+            // Scene 5: custom scene with all 4 objects
+            let objects = vec![
+                Object::Plane(Plane {
+                    point: Vec3::new(0.0, -1.0, 0.0),
+                    normal: Vec3::new(0.0, 1.0, 0.0),
+                    material: mat(Vec3::new(0.60, 0.30, 0.20), 0.03),
+                }),
+                Object::Sphere(Sphere {
+                    center: Vec3::new(1.5, 0.0, 4.5),
+                    radius: 1.0,
+                    material: Material {
+                        color: Vec3::new(0.90, 0.25, 0.30),
+                        ambient: 0.12,
+                        diffuse: 0.85,
+                        specular: 0.7,
+                        shininess: 100.0,
+                        reflectivity: 0.15,
+                    },
+                }),
+                Object::Cube(AabbCube {
+                    min: Vec3::new(-2.0, -1.0, 3.5),
+                    max: Vec3::new(-0.5, 0.5, 5.0),
+                    material: Material {
+                        color: Vec3::new(0.20, 0.65, 0.40),
+                        ambient: 0.15,
+                        diffuse: 0.8,
+                        specular: 0.4,
+                        shininess: 50.0,
+                        reflectivity: 0.1,
+                    },
+                }),
+                Object::Cylinder(Cylinder {
+                    center: Vec3::new(0.0, 0.0, 7.0),
+                    radius: 0.8,
+                    y_min: -1.0,
+                    y_max: 1.5,
+                    material: Material {
+                        color: Vec3::new(0.30, 0.45, 0.95),
+                        ambient: 0.13,
+                        diffuse: 0.82,
+                        specular: 0.55,
+                        shininess: 70.0,
+                        reflectivity: 0.12,
+                    },
+                }),
+            ];
+
+            let scene = Scene {
+                objects,
+                light: Light {
+                    position: Vec3::new(4.0, 8.0, -2.0),
+                    color: Vec3::new(1.0, 0.95, 0.90),
+                    intensity: 1.2,
+                },
+                background_top: Vec3::new(0.80, 0.88, 0.95),
+                background_bottom: Vec3::new(0.45, 0.55, 0.65),
+                global_brightness: brightness_override.unwrap_or(1.0),
+            };
+            let cam = Camera::look_at(
+                Vec3::new(2.5, 0.3, -3.0),
+                Vec3::new(0.0, -0.8, 5.0),
+                Vec3::new(0.0, 1.0, 0.0),
+                60.0,
+                aspect,
+            );
+            (scene, cam, "scene5_custom.ppm".to_string())
         }
     }
 }
@@ -701,7 +769,7 @@ fn parse_string_arg(args: &[String], key: &str) -> Option<String> {
 fn print_help() {
     eprintln!(
         "Usage:
-  cargo run -- [--scene 1|2|3|4] [--width W] [--height H] [--output FILE] [--brightness B]
+  cargo run -- [--scene 1|2|3|4|5] [--width W] [--height H] [--output FILE] [--brightness B]
   cargo run -- --all [--width W] [--height H]
 
 Examples:
@@ -753,8 +821,8 @@ fn main() {
     }
 
     let scene_id = parse_arg::<u32>(&args, "--scene").unwrap_or(1);
-    if !(1..=4).contains(&scene_id) {
-        eprintln!("scene must be in 1..=4");
+    if !(1..=5).contains(&scene_id) {
+        eprintln!("scene must be in 1..=5");
         return;
     }
 
